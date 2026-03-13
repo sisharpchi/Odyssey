@@ -7,10 +7,10 @@ var postgres = builder.AddPostgres("postgres")
 var redis = builder.AddRedis("cache")
     .WithDataVolume();
 
-var authDb = postgres.AddDatabase(name: "auth-db", databaseName: "auth_db");
-var homestayDb = postgres.AddDatabase(name: "homestay-db", databaseName: "homestay_db");
-var tripDb = postgres.AddDatabase(name: "trip-db", databaseName: "trip_db");
-var notifyDb = postgres.AddDatabase(name: "notify-db", databaseName: "notify_db");
+var authDb = postgres.AddDatabase(name: "auth-db", databaseName: "odyssey_auth_db");
+var homestayDb = postgres.AddDatabase(name: "homestay-db", databaseName: "odyssey_homestay_db");
+var tripDb = postgres.AddDatabase(name: "trip-db", databaseName: "odyssey_trip_db");
+var notifyDb = postgres.AddDatabase(name: "notify-db", databaseName: "odyssey_notify_db");
 
 #region need
 //var apiService = builder.AddProject<Projects.Odyssey_ApiService>("apiservice")

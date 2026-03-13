@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>e7b4f985-b29e-4ab7-b736-e2db8776fc9b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Odyssey.ApiService\Odyssey.ApiService.csproj" />
+    <ProjectReference Include="..\Odyssey.Web\Odyssey.Web.csproj" />
+    <ProjectReference Include="..\Services\Odyssey.AIGuideService\AIGuideService.API\AIGuideService.API.csproj" />
+    <ProjectReference Include="..\Services\Odyssey.AuthService\AuthService.API\AuthService.API.csproj" />
+    <ProjectReference Include="..\Services\Odyssey.HomestayService\HomestayService.API\HomestayService.API.csproj" />
+    <ProjectReference Include="..\Services\Odyssey.NotificationService\NotificationService.API\NotificationService.API.csproj" />
+    <ProjectReference Include="..\Services\Odyssey.TripService\TripService.API\TripService.API.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+	  <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="9.5.0" />
+  </ItemGroup>
+
+</Project>

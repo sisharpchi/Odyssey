@@ -14,4 +14,8 @@
     <ProjectReference Include="..\..\..\Odyssey.ServiceDefaults\Odyssey.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>

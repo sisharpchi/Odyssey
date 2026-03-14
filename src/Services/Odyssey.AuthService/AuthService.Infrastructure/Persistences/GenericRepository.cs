@@ -3,7 +3,7 @@ using AuthService.Core.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AuthService.Infrastructure.Persistence;
+namespace AuthService.Infrastructure.Persistences;
 
 internal class GenericRepository<TContext> : IRepository
     where TContext : DbContext

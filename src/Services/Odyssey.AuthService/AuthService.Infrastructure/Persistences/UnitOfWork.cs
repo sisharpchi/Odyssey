@@ -1,7 +1,7 @@
 ﻿using AuthService.Core.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthService.Infrastructure.Persistence;
+namespace AuthService.Infrastructure.Persistences;
 
 internal class UnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
 {

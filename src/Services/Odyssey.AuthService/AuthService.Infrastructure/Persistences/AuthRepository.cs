@@ -3,7 +3,7 @@ using AuthService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace AuthService.Infrastructure.Persistence;
+namespace AuthService.Infrastructure.Persistences;
 
 internal class AuthRepository : GenericRepository<AuthDbContext>, IAuthRepository
 {

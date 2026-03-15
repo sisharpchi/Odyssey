@@ -16,25 +16,25 @@ public interface IRepository : IDisposable
     /// Asynchronously counts number of entities.
     /// </summary>
     /// <param name="predicate">Predicate to filter query</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <returns>Number of elements that satisfies the specified condition</returns>
     Task<int> CountAsync<TEntity>(Expression<Func<TEntity, bool>>? predicate = default)
-        where TEntity : class, IEntity<int>;
+        where TEntity : class, IEntity<long>;
 
     /// <summary>
     /// Asynchronously computes the sum of a sequence of values
     /// </summary>
     /// <param name="selector">A projection function to apply to each element</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <returns>The sum of the projected values</returns>
     Task<decimal> SumAsync<TEntity>(Expression<Func<TEntity, decimal>> selector, Expression<Func<TEntity, bool>> predicate = default)
-        where TEntity : class, IEntity<int>;
+        where TEntity : class, IEntity<long>;
 
     /// <summary>
     /// Gets an entity object by ID.
     /// </summary>
     /// <param name="id">Entity primary key</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <returns>Entity object</returns>
     Task<TEntity?> GetAsync<TEntity>(object? id)
         where TEntity : class;
@@ -43,38 +43,38 @@ public interface IRepository : IDisposable
     /// Gets an entity object filtered by predicate.
     /// </summary>
     /// <param name="predicate">Predicate to filter query</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <returns>Entity object</returns>
     Task<TEntity?> GetAsync<TEntity>(Expression<Func<TEntity, bool>> predicate)
-        where TEntity : class, IEntity<int>;
+        where TEntity : class, IEntity<long>;
 
     /// <summary>
     /// Gets a list of the entity objects
     /// </summary>
     /// <param name="predicate">Predicate to filter query</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <returns>List of entity objects</returns>
     Task<List<TEntity>> GetListAsync<TEntity>(Expression<Func<TEntity, bool>>? predicate = default)
-        where TEntity : class, IEntity<int>;
+        where TEntity : class, IEntity<long>;
 
     /// <summary>
     /// Gets a dictionary of the entities and specified keys.
     /// </summary>
     /// <param name="keySelector">Key selector</param>
     /// <param name="predicate">Predicate to filter query</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <typeparam name="TKey">Key</typeparam>
     Task<Dictionary<TKey, TEntity>> GetDictionaryAsync<TKey, TEntity>(
         Func<TEntity, TKey> keySelector,
         Expression<Func<TEntity, bool>>? predicate = default)
-        where TEntity : class, IEntity<int>
+        where TEntity : class, IEntity<long>
         where TKey : notnull;
 
     /// <summary>
     /// Gets IQueryable entity objects.
     /// </summary>
     /// <param name="predicate">Predicate to filter query</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     /// <returns>IQueryable of entity objects</returns>
     IQueryable<TEntity> Query<TEntity>(Expression<Func<TEntity, bool>>? predicate = default)
         where TEntity : class;
@@ -83,9 +83,9 @@ public interface IRepository : IDisposable
     /// Adds new entry to database.
     /// </summary>
     /// <param name="entity">Entity object</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     Task AddAsync<TEntity>(TEntity entity)
-        where TEntity : class, IEntity<int>;
+        where TEntity : class, IEntity<long>;
 
     void Add<TEntity>(TEntity entity)
          where TEntity : class;
@@ -94,15 +94,15 @@ public interface IRepository : IDisposable
     /// Updates existing entry.
     /// </summary>
     /// <param name="entity">Entity object</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     void Update<TEntity>(TEntity entity)
-        where TEntity : class, IEntity<int>;
+        where TEntity : class, IEntity<long>;
 
     /// <summary>
     /// Deletes entity object from database.
     /// </summary>
     /// <param name="entity">Entity object</param>
-    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> interface</typeparam>
+    /// <typeparam name="TEntity">Class that implements the <see cref="IEntity{TKey}"/> longerface</typeparam>
     void Delete<TEntity>(TEntity? entity)
         where TEntity : class;
 }

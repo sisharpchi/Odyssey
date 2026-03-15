@@ -1,8 +1,10 @@
 ﻿using AuthService.Core.Entities;
+using AuthService.Core.Persistence;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
@@ -15,6 +17,7 @@ namespace AuthService.API.Controllers;
 [Route("security/oauth")]
 public class OAuthAuthorizationController : ControllerBase
 {
+    private readonly IAuthRepository _authRepository;
     private readonly UserManager<User> _userManager;
     private readonly IOpenIddictApplicationManager _applicationManager;
     private readonly IOpenIddictScopeManager _scopeManager;
@@ -24,12 +27,14 @@ public class OAuthAuthorizationController : ControllerBase
         UserManager<User> userManager,
         IOpenIddictApplicationManager applicationManager,
         IOpenIddictScopeManager scopeManager,
-        IOpenIddictTokenManager tokenManager)
+        IOpenIddictTokenManager tokenManager,
+        IAuthRepository authRepository)
     {
         _userManager = userManager;
         _applicationManager = applicationManager;
         _scopeManager = scopeManager;
         _tokenManager = tokenManager;
+        _authRepository = authRepository;
     }
 
     [HttpPost("token")]
@@ -127,7 +132,8 @@ public class OAuthAuthorizationController : ControllerBase
         }
 
         var user = await _userManager.FindByNameAsync(request.Username)
-            ?? await _userManager.FindByEmailAsync(request.Username);
+            ?? await _userManager.FindByEmailAsync(request.Username)
+            ?? await _authRepository.Query<User>().Where(u => u.PhoneNumber == request.Username).FirstOrDefaultAsync();
 
         if (user is null)
         {
@@ -157,7 +163,6 @@ public class OAuthAuthorizationController : ControllerBase
         identity.SetClaim(Claims.Subject, user.Id);
         identity.SetClaim(ClaimTypes.NameIdentifier, user.Id);
 
-        // offline_access scope — javobda refresh_token chiqishi uchun (Aliposter misolidek)
         var scopes = new HashSet<string>(request.GetScopes());
         scopes.Add(Scopes.OfflineAccess);
         identity.SetScopes(scopes);
